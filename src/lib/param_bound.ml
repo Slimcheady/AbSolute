@@ -1,10 +1,11 @@
 
 type t =
-  | Binop of op * t * t
+  | Binop of bop * t * t
   | BoundInt of int
-  | BoundParam of param 
+  | BoundParam of param
+  | Neg of t
 
- and op =
+ and bop =
    | Plus
    | Minus
    | Min
@@ -20,6 +21,11 @@ let rec add x y =
   | (BoundInt a), (BoundInt b) -> BoundInt(a+b)
   | (BoundInt a), (BoundParam b) -> Binop (Plus,y,x)
   | (BoundInt a), (Binop (b,gauche,droite)) -> Binop (b,gauche, (add droite x))
+  | (BoundInt a), (Neg (BoundInt b)) -> BoundInt(a-b)
+  | (BoundInt a), (Neg (BoundParam b)) -> Binop(Plus,y,x)
+  | (BoundParam a), (BoundParam b) -> Binop (Plus,x,y)
+  | (BoundParam a), (BoundInt b) -> Binop (Plus,x,y)
+  | (BoundParam a), (Binop (b,gauche,droite)) -> 
   | _ -> failwith "pas encore implementé"
 
 
