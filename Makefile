@@ -49,8 +49,10 @@ MLFILES = \
   src/lib/mapext.ml \
   src/lib/bound_sig.ml \
   src/lib/bound_float.ml \
+  src/lib/param_bound.ml \
   src/lib/itv_sig.ml \
   src/lib/itv.ml \
+  src/lib/param_itv.ml \
   src/domains/apron_domain.ml \
   src/domains/abstract_box.ml \
   src/domains/adcp_sig.ml \
